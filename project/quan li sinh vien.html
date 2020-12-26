@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dự án sinh viên</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon"  href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  	<style type="text/css">
+  		.cach{
+  			height: 20px;
+  		}
+		td{
+			padding-left: 6px;
+			padding-right: 6px;
+			text-align: center;
+		}
+		.ac1{
+			color: red;
+		}
+  	</style>
+</head>
+<body onload="duansv2()">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-6"><h2>Quản lý sinh viên</h2></div>
+			<div class="col-md-2"></div>
+			
+		</div>
+		<div class="cach"></div>
+		<div class="row">
+			<div class="col-md-3" style="border: 1px solid #848484">
+				<div class="form-group"><h4>Nhập thông tin</h4></div>
+				<span class="ac1" id="canhbao"></span>
+				<div class="form-group">
+					<span>Họ và tên:</span>
+					<input type="text" class="form-control" id="ten" placeholder="Nhập họ và tên" name="">
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-3">Lớp:</div>
+						<div class="col-9"><input type="text" id="lop" class="form-control" placeholder="Nhập lớp" name=""></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<span>Tên trường:</span>
+					<input type="text" class="form-control" id="truong" placeholder="Nhập tên trường" name="">
+				</div>
+				<div class="form-group">
+					<span>Ngày sinh:</span>
+					<input type="date" id="ngaysinh" class="form-control" name="">
+				</div>
+				<div class="form-group">
+					<span>Địa chỉ:</span>
+					<input type="text" id="diachi" class="form-control" placeholder="Nhập địa chỉ" name="">
+				</div>
+				<div class="form-group">
+					<span>Số điện thoại:</span>
+					<input type="number" id="sdt" class="form-control" placeholder="Nhập số điện thoại" name="">
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-4">Giới tính:</div>
+						<div class="col">
+							<input type="radio" value="Nam" id="nam" name="gioitinh"> Nam
+							<input type="radio" value="Nữ" id="nu" name="gioitinh">  Nữ
+							<input type="radio" value="Khác" id="khac" name="gioitinh"> Khác
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-5"></div>
+						<div class="col-7"><button onclick="duansv1()" class="btn btn-danger">Lưu thông tin</button></div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-1"></div>
+			<div id="acc1" class="col-md-8" style="border: 1px solid #848484">
+				
+				<h1 style="text-align: center;font-family: Sans-serif;color: #FF0040;">Bài trình bày dự án nhóm 1</h1>
+				<h3 style="text-align: center;font-family: Sans-serif;color: #FF0040;">Lớp LT0820C</h3>
+				<div id="tentv">
+				<h4 style="margin-left: 10px;font-family: Sans-serif;color: #FA5858;">Tên thành viên</h4>
+				<h5 style="margin-left: 10px;font-family: Sans-serif;color: #FA5858;">Nguyễn Xuân Viễn: C Coder</h5>
+				<h5 style="margin-left: 10px;font-family: Sans-serif;color: #FA5858;">Chu Quang Đức: C Coder</h5>
+				<h5 style="margin-left: 10px;font-family: Sans-serif;color: #FA5858;">Đồng Huy Hoàng: Web Coder</h5>
+				<h5 style="margin-left: 10px;font-family: Sans-serif;color: #FA5858;">Nguyễn Mạnh Tú: Web Coder</h5>
+				<img style="float: right;margin-top: -163px; " src="gifcoder.gif">
+				<h4 style="text-align: center;margin-left: 220px;">Danh sách sinh viên</h4>
+				<div>
+					<table id="abc" cellspacing="0" border="1px">
+						
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)"></script> 
+<script type="text/javascript" >
+	function duansv1(){
+	var ten = document.getElementById('ten').value;
+	var lop = document.getElementById('lop').value;
+	var truong = document.getElementById('truong').value;
+	var ngaysinh = document.getElementById('ngaysinh').value;
+	var diachi = document.getElementById('diachi').value;
+	var sdt = document.getElementById('sdt').value;
+	var gioitinh = '';
+	if (document.getElementById('nam').checked) {
+		gioitinh = document.getElementById('nam').value;
+	}
+	else if (document.getElementById('nu').checked) {
+		gioitinh = document.getElementById('nu').value;
+	}
+	else if (document.getElementById('khac').checked) {
+		gioitinh = document.getElementById('khac').value;
+	}
+	if(_.isEmpty(ten)){
+		document.getElementById('canhbao').innerHTML = 'Cảnh báo không đầy đủ thông tin!!!'
+	} else{document.getElementById('canhbao').innerHTML = ''}
+	if(_.isEmpty(lop)){
+		document.getElementById('canhbao').innerHTML = 'Cảnh báo không đầy đủ thông tin!!!'
+	} else{document.getElementById('canhbao').innerHTML = ''}
+	if(_.isEmpty(truong)){
+		document.getElementById('canhbao').innerHTML = 'Cảnh báo không đầy đủ thông tin!!!'
+	} else{document.getElementById('canhbao').innerHTML = ''}
+	if(_.isEmpty(diachi)){
+		document.getElementById('canhbao').innerHTML = 'Cảnh báo không đầy đủ thông tin!!!'
+	} else{document.getElementById('canhbao').innerHTML = ''}
+	if(_.isEmpty(ngaysinh)){
+		document.getElementById('canhbao').innerHTML = 'Cảnh báo không đầy đủ thông tin!!!'
+	} else{document.getElementById('canhbao').innerHTML = ''}
+	if(_.isEmpty(sdt)){
+		document.getElementById('canhbao').innerHTML = 'Cảnh báo không đầy đủ thông tin!!!'
+	} else{document.getElementById('canhbao').innerHTML = ''}
+	if(_.isEmpty(gioitinh)){
+		document.getElementById('canhbao').innerHTML = 'Cảnh báo không đầy đủ thông tin!!!'
+	} else{document.getElementById('canhbao').innerHTML = ''}
+
+	if(ten && lop && truong && ngaysinh && diachi && sdt && gioitinh){
+		console.log(ten, lop, truong, diachi, ngaysinh, sdt, giositinh)
+	}
+
+	var sinhvien = localStorage.getItem('sinhvien') ? JSON.parse(localStorage.getItem('sinhvien')) : [];
+	sinhvien.push({
+		ten: ten,
+		lop: lop,
+		truong: truong,
+		ngaysinh: ngaysinh,
+		diachi: diachi,
+		sdt: sdt,
+		gioitinh: gioitinh,
+	});
+	localStorage.setItem('sinhvien', JSON.stringify(sinhvien));
+
+	this.duansv2();
+}
+function duansv2(){
+		var sinhvien = localStorage.getItem('sinhvien') ? JSON.parse(localStorage.getItem('sinhvien')) : [];
+		if(sinhvien.length === 0) {
+			document.getElementById('acc1').style.display = 'none';
+			return false;
+		}
+		document.getElementById('acc1').style.display = 'block';
+	var bang = `
+	<tr>
+		<td >STT</td>
+		<td >Họ và tên</td>
+		<td >Lớp</td>
+		<td >Trường</td>
+		<td >Ngày sinh</td>
+		<td >Địa chỉ</td>
+		<td >Số điện thoại</td>
+		<td >giới tính</td>
+		<td> hành động</td>
+	</tr>
+	`;
+	sinhvien.forEach((student, index) =>{
+		var sinhvienid = index;
+		index++;
+		bang += `
+		<tr>
+		<td >${index}</td>
+		<td >${student.ten}</td>
+		<td >${student.lop}</td>
+		<td >${student.truong}</td>
+		<td >${student.ngaysinh}</td>
+		<td >${student.diachi}</td>
+		<td >${student.sdt}</td>
+		<td >${student.gioitinh}</td>
+		<td>
+		<a href='#' onclick='xoasv(${sinhvienid})'>xoa</a>
+		</td>
+	</tr> 
+		`;
+	})
+	document.getElementById('abc').innerHTML = bang;
+	}
+function xoasv(id){
+	var sinhvien = localStorage.getItem('sinhvien') ? JSON.parse(localStorage.getItem('sinhvien')) : [];
+	sinhvien.splice(id, 1);
+	localStorage.setItem('sinhvien', JSON.stringify(sinhvien));
+	 duansv2()
+}
+</script>
+</body>
+</html>
+	
+
+</body>
+</html>
